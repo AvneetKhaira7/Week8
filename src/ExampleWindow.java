@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,6 +13,8 @@ public class ExampleWindow extends JFrame {
 	private JLabel _helloLabel;
 	private JTextField _nameTextField;
 	private JLabel _nameLabel;
+	private NameTextFieldHandler _nameTextfieldHandler;
+	
 
 	//PUBLIC PROPERTIES ++++++++++++++++++++++++
 	public JLabel getHelloLabel() {
@@ -25,6 +29,8 @@ public class ExampleWindow extends JFrame {
 	public ExampleWindow() {
 		this._initialize();
 		this._addUIComponents();
+		this._nameTextfieldHandler = new NameTextFieldHandler();
+		this._nameTextField.addActionListener(this._nameTextfieldHandler);
 	}
 	
 	//PRIVATE METHODS +++++++++++++++++++++++++++++++++++
@@ -32,28 +38,30 @@ public class ExampleWindow extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 300);
 		this._contentPane = new JPanel();
+		this._contentPane.setBackground(new Color(250, 250, 210));
 		this._contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this._contentPane);
 		
 		}
-
+	
 	private void _addUIComponents() {
-		// Uses Absolute label
+		
+		//Absolute Layout
 		this._contentPane.setLayout(null);
 		
 		//Hello Label
 		this._helloLabel = new JLabel("New Label");
-		this._helloLabel.setBounds(10, 10, 96, 23);
+		this._helloLabel.setBounds(5, 0, 126, 27);
 		this._contentPane.add(this._helloLabel);
 		
 		//Name Label
 		this._nameLabel = new JLabel("Enter Name");
-		this._nameLabel.setBounds(10, 38, 166, 40);
+		_nameLabel.setBounds(5, 38, 132, 27);
 		this._contentPane.add(this._nameLabel);
 		
 		//Text Field
 		this._nameTextField = new JTextField();
-		this._nameTextField.setBounds(79, 48, 86, 20);
+		_nameTextField.setBounds(125, 38, 117, 27);
 		this._contentPane.add(this._nameTextField);
 		this._nameTextField.setColumns(10);
 	}
